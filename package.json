@@ -1,0 +1,18 @@
+{
+    "name": "fecs-loader",
+    "version": "1.0.0",
+    "description": "fecs-loader",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [
+        "fecs-loader"
+    ],
+    "author": "zhangzhiqiang <zhangzhiqiang04@baidu.com>",
+    "license": "ISC",
+    "dependencies": {
+        "fecs": "^0.6.4",
+        "vinyl-fs": "^2.4.2"
+    }
+}
