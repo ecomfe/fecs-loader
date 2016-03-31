@@ -1,6 +1,6 @@
 /**
  * @file index.js fecs-loader main file
- * @author zhangzhiqiang<zhangzhiqiang04@baidu.com>
+ * @author zhangzhiqiang<zhiqiangzhang37@gmail.com>
  */
 
 // var loaderUtils = require('loader-utils');
@@ -16,21 +16,23 @@ var path = require('path');
 var options = fecs.getOptions();
 
 function check(fileType, options) {
-    console.log('/Users/zhangzhiqiang/work/webpack/less.css')
+    var checker;
     switch (fileType) {
         case 'js':
-            return jsChecker.exec(options);
+            checker = jsChecker.exec(options);
             break;
         case 'css':
-            return cssChecker.exec(options);
+            checker = cssChecker.exec(options);
             break;
         case 'less':
-            return lessChecker.exec(options);
+            checker = lessChecker.exec(options);
             break;
         default:
-            return jsChecker.exec(options);
+            checker = jsChecker.exec(options);
             break;
     }
+
+    return checker;
 
 }
 

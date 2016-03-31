@@ -9,7 +9,17 @@
     "keywords": [
         "fecs-loader"
     ],
-    "author": "zhangzhiqiang <zhangzhiqiang04@baidu.com>",
+    "author": {
+        "email": "zhiqiangzhang37@gmail.com",
+        "name": "zhangzhiqiang"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ecomfe/fecs-loader.git"
+    },
+    "bugs": {
+        "url": "https://github.com/ecomfe/fecs-loader/issues"
+    },
     "license": "ISC",
     "dependencies": {
         "fecs": "^0.6.4",

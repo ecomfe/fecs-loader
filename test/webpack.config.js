@@ -1,4 +1,7 @@
-var webpack = require('webpack');
+/**
+ * @file index.js fecs-loader main file
+ * @author zhangzhiqiang<zhiqiangzhang37@gmail.com>
+ */
 
 module.exports = {
     entry: {
