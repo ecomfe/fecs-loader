@@ -1,28 +1,29 @@
 {
-    "name": "fecs-loader",
-    "version": "1.0.0",
-    "description": "fecs-loader",
-    "main": "index.js",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "keywords": [
-        "fecs-loader"
-    ],
-    "author": {
-        "email": "zhiqiangzhang37@gmail.com",
-        "name": "zhangzhiqiang"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/ecomfe/fecs-loader.git"
-    },
-    "bugs": {
-        "url": "https://github.com/ecomfe/fecs-loader/issues"
-    },
-    "license": "ISC",
-    "dependencies": {
-        "fecs": "^0.6.4",
-        "vinyl-fs": "^2.4.2"
-    }
+  "name": "fecs-loader",
+  "version": "0.1.0",
+  "description": "fecs-loader",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "fecs-loader"
+  ],
+  "author": {
+    "email": "zhiqiangzhang37@gmail.com",
+    "name": "zhangzhiqiang"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ecomfe/fecs-loader.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ecomfe/fecs-loader/issues"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "fecs": "^0.6.4",
+    "loader-utils": "^0.2.13",
+    "vinyl-fs": "^2.4.2"
+  }
 }

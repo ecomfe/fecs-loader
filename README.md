@@ -1,4 +1,4 @@
-# fecs-loader
+# fecs-loader [![Build Status](http://img.shields.io/travis/MoOx/eslint-loader.svg)](https://travis-ci.org/MoOx/eslint-loader)
 fecs loader (for webpack) —— webpack中的fecs检查工具
 ## Usage
 安装fecs-loader
