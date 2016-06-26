@@ -48,7 +48,9 @@ module.exports = function (resource) {
 
     // report结束时打个空白行
     reporter.on('done', function (success, json, fileCount, errorCount) {
+        /* eslint-disable */
         console.log();
+        /* eslint-enable */
     });
 
 
