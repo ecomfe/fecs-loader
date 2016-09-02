@@ -3,36 +3,39 @@
  * @author zhangzhiqiang<zhiqiangzhang37@gmail.com>
  */
 
-// var loaderUtils = require('loader-utils');
 var fecs = require('fecs');
 var fs = require('vinyl-fs');
 var cssChecker = require('fecs/lib/css/checker');
 var jsChecker = require('fecs/lib/js/checker');
 var lessChecker = require('fecs/lib/less/checker');
+var htmlChecker = require('fecs/lib/html/checker');
 var fecsLog = require('fecs/lib/log');
 var fecsReporter = require('fecs/lib/reporter');
+var mapStream  = require('map-stream');
 var path = require('path');
+// var util = require('util');
 
 var options = fecs.getOptions();
 
-function check(fileType, options) {
+function check(fileType) {
     var checker;
     switch (fileType) {
         case 'js':
-            checker = jsChecker.exec(options);
+            checker = jsChecker;
             break;
         case 'css':
-            checker = cssChecker.exec(options);
+            checker = cssChecker;
             break;
         case 'less':
-            checker = lessChecker.exec(options);
+            checker = lessChecker;
             break;
         default:
-            checker = jsChecker.exec(options);
+            checker = htmlChecker;
             break;
     }
 
-    return checker;
+    // return checker.check(contents, filePath, options);
+    return checker.exec(options);
 
 }
 
@@ -53,9 +56,34 @@ module.exports = function (resource) {
         /* eslint-enable */
     });
 
-
     fs.src([resourcePath])
-        .pipe(check(extName, options))
+        // .pipe(mapStream(function (file, cb) {
+        //     var contents = file.contents.toString();
+        //     var done = function (errors) {
+        //         file.errors = errors;
+        //         cb(null, file);
+        //     };
+        //     var promise = check(extName, contents, file.path);
+        //     if (util.isArray(promise)) {
+        //         return done(promise);
+        //     }
+        //     promise.then(done, done);
+        // }))
+        .pipe(mapStream(function (file, cb) {
+            var filePath = file.path;
+            if (extName !== 'js' && extName !== 'css' && extName !== 'less') {
+                file.realPath = filePath;
+                file.path = filePath.slice(0, -path.extname(filePath).length) + '.html';
+            }
+            cb(null, file);
+        }))
+        .pipe(check(extName))
+        .pipe(mapStream(function (file, cb) {
+            if (file.realPath) {
+                file.path = file.realPath;
+            }
+            cb(null, file);
+        }))
         .pipe(reporter);
 
     return resource;

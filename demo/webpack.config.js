@@ -1,5 +1,5 @@
 /**
- * @file index.js fecs-loader main file
+ * @file webpack.config.js webpack config file
  * @author zhangzhiqiang<zhiqiangzhang37@gmail.com>
  */
 
@@ -15,7 +15,7 @@ module.exports = {
         loaders: [
             {test: /\.less$/, loader: 'style-loader!css-loader!less-loader'},
             {test: /\.css$/, loader: 'style-loader!css-loader'},
-            {test: /\.(less|css|js)$/, loader: 'fecs-loader'} // 要把fecs-loader放在语言处理loader之前
+            {test: /\.(less|css|js|vue)$/, loader: 'fecs-loader'} // 要把fecs-loader放在语言处理loader之前
         ]
     }
 };
