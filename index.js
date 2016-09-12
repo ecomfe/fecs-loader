@@ -41,6 +41,9 @@ function check(fileType, options) {
     var checker;
     switch (fileType) {
         case 'js':
+        case 'es':
+        case 'es6':
+        case 'jsx':
             checker = jsChecker;
             break;
         case 'css':
@@ -69,6 +72,7 @@ module.exports = function (resource, map) {
     var log = fecsLog(fecsOptions.color);
     var reporter = fecsReporter.get(log, fecsOptions);
     var source = [resourcePath];
+    var checkFileTypes = ['js', 'es', 'es6', 'jsx', 'html', 'css', 'less'];
     var options = assign(
         {},
         fecsOptions,
@@ -111,8 +115,8 @@ module.exports = function (resource, map) {
     vfs.src(source)
         .pipe(mapStream(function (file, cb) {
             var filePath = file.path;
-            // 非js/css/less类型的文件使用html规则检查
-            if (extName !== 'js' && extName !== 'css' && extName !== 'less') {
+            // 不在check类型列表的文件使用html规则检查
+            if (checkFileTypes.indexOf(extName) === -1) {
                 file.realPath = filePath;
                 file.path = filePath.slice(0, -path.extname(filePath).length) + '.html';
             }
@@ -126,14 +130,16 @@ module.exports = function (resource, map) {
             cb(null, file);
             var errorCount = 0;
             var warningCount = 0;
-            file.errors.forEach(function (error) {
-                if (error.severity === Severity.ERROR) {
-                    errorCount++;
-                }
-                else if (error.severity === Severity.WARN) {
-                    warningCount++;
-                }
-            });
+            if (file.errors && Array.isArray(file.errors)) {
+                file.errors.forEach(function (error) {
+                    if (error.severity === Severity.ERROR) {
+                        errorCount++;
+                    }
+                    else if (error.severity === Severity.WARN) {
+                        warningCount++;
+                    }
+                });
+            }
             if ((options.failOnError && errorCount)
                 || (options.failOnWarning && warningCount)) {
                 emitError('Module failed because of fecs '

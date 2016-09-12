@@ -15,8 +15,9 @@ module.exports = {
             {test: /\.less$/, loader: 'style-loader!css-loader!less-loader'},
             {test: /\.css$/, loader: 'style-loader!css-loader'},
             {test: /\.vue/, loader: 'vue-loader'},
+            {test: /\.jsx/, loader: 'jsx-loader'},
             // 要把fecs-loader放在语言处理loader之前
-            {test: /\.(less|css|js|vue)$/, loader: 'fecs-loader'}
+            {test: /\.(less|css|js|vue|es|es6|jsx)$/, loader: 'fecs-loader'}
         ]
     },
     fecs: {
