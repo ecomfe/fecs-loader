@@ -17,6 +17,7 @@
     "fecs-loader": "~0.1.0",
     "less-loader": "^2.2.3",
     "style-loader": "^0.13.1",
-    "webpack": "^1.12.14"
+    "webpack": "^1.12.14",
+    "vue-loader": "^8.5.2"
   }
 }
