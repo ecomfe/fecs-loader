@@ -119,6 +119,10 @@ module.exports = function (resource, map) {
             if (checkFileTypes.indexOf(extName) === -1) {
                 file.realPath = filePath;
                 file.path = filePath.slice(0, -path.extname(filePath).length) + '.html';
+                // 非html类型文件允许出现css style标签
+                var newContents = '<!-- htmlcs-disable css-in-head, style-disabled -->\n'
+                    + file.contents.toString();
+                file.contents = new Buffer(newContents);
             }
             cb(null, file);
         }))
