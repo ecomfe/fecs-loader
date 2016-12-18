@@ -63,11 +63,16 @@ function check(fileType, options) {
 
 module.exports = function (resource, map) {
 
+    // 跳过node_modules
+    var resourcePath = this.resourcePath;
+    if (/node_modules/.test(resourcePath)) {
+        return resource;
+    }
+
     // 利用缓存来提高效率
     this.cacheable();
     var callback = this.async();
     var emitError = this.emitError;
-    var resourcePath = this.resourcePath;
     var extName = path.extname(resourcePath).slice(1);
     var log = fecsLog(fecsOptions.color);
     var reporter = fecsReporter.get(log, fecsOptions);
@@ -112,7 +117,7 @@ module.exports = function (resource, map) {
         /* eslint-enable */
     });
 
-    vfs.src(source)
+    vfs.src(source, {cwdbase: true, allowEmpty: true})
         .pipe(mapStream(function (file, cb) {
             var filePath = file.path;
             // 不在check类型列表的文件使用html规则检查
