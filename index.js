@@ -77,7 +77,7 @@ module.exports = function (resource, map) {
     var log = fecsLog(fecsOptions.color);
     var reporter = fecsReporter.get(log, fecsOptions);
     var source = [resourcePath];
-    var checkFileTypes = ['js', 'es', 'es6', 'jsx', 'html', 'css', 'less'];
+    var checkFileTypes = ['js', 'es', 'es6', 'jsx', 'html', 'css', 'less', 'vue'];
     var options = assign(
         {},
         fecsOptions,
