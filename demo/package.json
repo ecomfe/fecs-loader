@@ -11,13 +11,16 @@
   ],
   "author": "zhangzhiqiang",
   "license": "ISC",
-  "devDependencies": {},
+  "devDependencies": {
+    "webpack-cli": "^2.0.12"
+  },
   "dependencies": {
-    "css-loader": "^0.23.1",
+    "css-loader": "*",
     "fecs-loader": "*",
-    "less-loader": "^2.2.3",
-    "style-loader": "^0.13.1",
-    "webpack": "^1.12.14",
-    "vue-loader": "^8.5.2"
+    "less-loader": "*",
+    "style-loader": "*",
+    "webpack": "*",
+    "vue-loader": "*",
+    "vue-template-compiler": "*"
   }
 }

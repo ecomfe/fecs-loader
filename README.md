@@ -6,43 +6,59 @@ fecs loader (for webpack) —— webpack中的fecs检查工具
 ```shell
 $ npm install fecs-loader
 ```
-如果less/css/js文件都check，可直接在原有webpack.config.js配置中的module.loaders的基础上加多一项
+如果less/css/js文件都check，可直接在原有webpack.config.js配置中的module.rules的基础上加多一项
 
 ```js
 {
     test: /\.(less|css|js)$/,
-    loader: 'fecs-loader'
+    use: ['fecs-loader']
 }
 ```
-或者只针对某一类文件check，可在原有的loader配置中添加loader，如：
+或者只针对某一类文件check，可在原有的loader配置中添加fecs-loader，如：
 
 ```js
 {
     test: /\.js$/,
-    loader: 'fecs-loader'
+    use: ['fecs-loader']
 },
 {
     test: /\.css$/,
-    loader: 'style-loader!css-loader!fecs-loader'
+    use: [
+        'style-loader',
+        'css-loader',
+        'fecs-loader'
+    ]
 },
 {
     test: /\.less$/,
-    loader: 'style-loader!css-loader!less-loader!fecs-loader'
+    use: [
+        'style-loader',
+        'css-loader',
+        'less-loader',
+        'fecs-loader'
+    ]
 }
 ```
-因为webpack的loader调用的顺序是从后往前的，所以为了fecs-loader能check最原始的代码，请将fecs-loader放置在数组or叹号相连的loader中的最后
+因为webpack的loader调用的顺序是从后往前的，所以为了fecs-loader能check最原始的代码，请将fecs-loader放置在数组的最后
 
 ## Options
-可以直接将参数加在loader后，形如```fecs-loader?key=value```，也可以将参数罗列在webpack.config.js全局配置中形如：
+可以直接将参数加在loader后，形如```fecs-loader?key=value```，也可以将参数写在loader的options中形如：
 
 ```js
-module: {
-	fecs: {
-		key: value
-	}
+{
+    test: /\.js$/,
+    use: [
+        {
+            loader: 'fecs-loader',
+            options: {
+                failOnError: true,
+                exclude: './index.js'
+            }
+        }
+    ]
 }
 ```
-建议将参数写在全局配置中
+
 ### ```faileOnError```(default: false)
 是否在fecs检测到模块内容有error时使模块编译失败，若failOnError为true则模块内容遇到fecs error时模块内容将不出现在编译结果中
 ### ```faileOnWarning```(default: false)
@@ -56,14 +72,19 @@ module: {
 ```
 module.exports = {
     module: {
-        loaders: [
-            {test: /\.(less|css|js|vue)$/, loader: 'fecs-loader'}
+        rules: [
+            {
+                test: /\.(less|css|js|vue)$/,
+                use: [
+                    loader: 'fecs-loader',
+                    options: {
+                        failOnError: true,
+                        failOnWarning: true,
+                        exclude: './index.js,./index2.js'
+                    }
+                ]
+            }
         ]
-    },
-    fecs: {
-        failOnError: true,
-        failOnWarning: true,
-        exclude: './index.js,./index2.js'
     }
 };
 

@@ -78,10 +78,12 @@ module.exports = function (resource, map) {
     var reporter = fecsReporter.get(log, fecsOptions);
     var source = [resourcePath];
     var checkFileTypes = ['js', 'es', 'es6', 'jsx', 'html', 'css', 'less', 'vue'];
+    // match webpack4
+    var webpackConfOpt = this.options || {};
     var options = assign(
         {},
         fecsOptions,
-        this.options.fecs || {},
+        webpackConfOpt.fecs || {},
         loaderUtils.parseQuery(this.query)
     );
 
