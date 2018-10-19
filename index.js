@@ -84,7 +84,7 @@ module.exports = function (resource, map) {
         {},
         fecsOptions,
         webpackConfOpt.fecs || {},
-        loaderUtils.parseQuery(this.query)
+        loaderUtils.getOptions(this)
     );
 
     function judgeAndContinue() {
