@@ -59,9 +59,9 @@ $ npm install fecs-loader
 }
 ```
 
-### ```faileOnError```(default: false)
+### ```failOnError```(default: false)
 是否在fecs检测到模块内容有error时使模块编译失败，若failOnError为true则模块内容遇到fecs error时模块内容将不出现在编译结果中
-### ```faileOnWarning```(default: false)
+### ```failOnWarning```(default: false)
 是否在fecs检测到模块内容有warning时使模块编译失败，若failOnWarning为true则模块内容遇到fecs warning时模块内容将不出现在编译结果中
 ### ```exclude```（default: ''）
 指定要忽略的```glob```文件模式，如```./index.js,./src/config/*.js```，文件模式若有多条，模式之间使用逗号```,```分隔
